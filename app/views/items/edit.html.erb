@@ -1,0 +1,32 @@
+
+<div class="container">
+	<h3>Edit your to do item!</h3>
+
+	<%= form_for :item, url: item_path(@user.id, @item.id), method: :patch do |f| %>
+	
+	<div>
+		<%= f.label :description %>
+		<%= f.text_field :description, :class => "form-control" %>
+	</div>
+
+	<div>
+		<%= f.label :done_by %>
+		<%= f.date_field :done_by, :class => "form-control" %>
+	</div>
+
+	<div>
+		<%= f.label :importance_level %>
+		<%= f.number_field :importance_level, :in => 0..5, :step => '1', :class => "form-control" %>
+	</div>	
+
+	<div>
+		<%= f.submit "Create", :class => "btn btn-primary" %>
+	</div>
+
+<% end %>
+
+	<br></br>
+	<br></br>
+
+	<%= link_to 'Back', '/users/'+@user.id.to_s, class: 'btn btn-default' %>
+</div>

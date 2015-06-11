@@ -1,12 +1,22 @@
 Rails.application.routes.draw do
-  resources :widgets
+  devise_for :users
+
+  get 'users/:id', to: 'users#show', as: 'user_path'
+  post 'users/:user_id/items' => 'items#create'
+  get 'users/:user_id/items', to: 'items#index', as: 'user_items'
+  delete 'users/:user_id/items/:id', to: 'items#destroy', as:'delete_user_item'
+  get 'users/:user_id/items/:id/edit', to: 'items#edit', as:'edit_user_item'
+  get 'users/:user_id/items/:id', to: 'items#show', as:'item'
+  put 'users/:user_id/items/:id', to: 'items#update'
+  patch 'users/:user_id/items/:id', to: 'items#update'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
 
-  root 'welcome#index'
+  root to: 'welcome#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

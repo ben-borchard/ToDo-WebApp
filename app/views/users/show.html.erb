@@ -1,0 +1,36 @@
+
+<div class="container">
+	<h2> Hey, <%= current_user.email %>!  See your to do list below! </h2>
+
+	<div class="row">
+		<div class="col-md-8">
+			<table class="table table-responsive table-hover">
+
+				<div class='items'>
+
+					<% last_date = nil %>
+					<% @items.each do |item| %>
+
+						<% if last_date.nil? or item.done_by > last_date  %>
+							<tr>
+								<td colspan ="4" style="background-color:#DDAAFF;">
+									<h4 style="text-align:center;">
+										<%= distance_of_time_in_words_to_now(item.done_by) %>
+									</h4>
+								</td>
+							</tr>
+						<% end %>
+
+
+						<%= render :partial => 'items/item', :locals => {:item => item} %>
+						<% last_date = item.done_by %>
+					<% end %>
+				</div>
+			</table>
+		</div>
+		<div class="col-md-4">
+			<h4>Create new to do item!</h4>
+			<%= render 'items/form' %>
+		</div>
+	</div>
+</div>

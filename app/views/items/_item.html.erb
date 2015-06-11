@@ -1,0 +1,13 @@
+<tr> 
+	<td> <%= item.description %> </td>
+	<td> <%= item.importance_level %> </td>
+	<td class="pull-right"> 
+		<%= link_to 'Remove', delete_user_item_path(@user.id, item.id), 
+							 method: :delete, 
+							 data: { confirm: 'Are you sure?' },
+							 class: "btn btn-danger" %>
+
+		<%= link_to 'Update', edit_user_item_path(@user.id, item.id), 
+							 class: "btn btn-primary" %>							
+	</td>
+</tr>
